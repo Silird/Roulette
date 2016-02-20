@@ -1,10 +1,8 @@
-/**
- * Created by Александр on 20.02.2016.
- */
+import Frames.MainFrame;
 
 //Точка входа
 public class main {
     public static void main(String[] args) {
-        return;
+        new MainFrame().Show();
     }
 }
