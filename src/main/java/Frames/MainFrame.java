@@ -1,6 +1,7 @@
 package Frames;
 
 import Listeners.MainFrameListeners.ListenerExit;
+import Structures.Game;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -11,14 +12,15 @@ public class MainFrame extends JFrame {
     private JButton butExit;
     private JLabel labelPlayers, labelActivePlayers, labelRemainPlayers;
     private JScrollPane scrollPlayers;
-    private JTable tablePlayers;
+    private MyTable tablePlayers;
     private DefaultTableModel modelPlayers;
-    final int NeedPlayers = 4;
+    private Game game;
 
     /**
      * Инициализация всех элементов и отображение формы на экране
      */
     public void Show() {
+        InitGame();
         InitFrame();
         InitStatus();
         InitView();
@@ -26,6 +28,10 @@ public class MainFrame extends JFrame {
         InitListeners();
 
         setVisible(true);
+    }
+
+    private void InitGame() {
+        game = new Game();
     }
 
     /**
@@ -40,8 +46,8 @@ public class MainFrame extends JFrame {
     }
 
     private void InitStatus() {
-        labelActivePlayers = new JLabel("Игроков в игре: 0    ");
-        labelRemainPlayers = new JLabel("Игроков для начала: " + String.valueOf(NeedPlayers) + "    ");
+        labelActivePlayers = new JLabel("Игроков в игре: " + String.valueOf(game.getCountPlayers()) + "    ");
+        labelRemainPlayers = new JLabel("Игроков для начала: " + String.valueOf(game.getMinPlayers()) + "    ");
 
         panelStatus = new JPanel();
         panelStatus.setLayout(new BoxLayout(panelStatus, BoxLayout.X_AXIS));
@@ -55,7 +61,7 @@ public class MainFrame extends JFrame {
         labelPlayers = new JLabel("Игроки:");
         String columns[] = {"Игрок", "Внесённая сумма", "Шанс победы"};
         modelPlayers = new DefaultTableModel(null, columns);
-        tablePlayers = new JTable(modelPlayers);
+        tablePlayers = new MyTable(modelPlayers);
         scrollPlayers = new JScrollPane();
         scrollPlayers.add(tablePlayers);
         panelPlayers = new JPanel();
