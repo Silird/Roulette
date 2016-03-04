@@ -22,9 +22,9 @@ public class MainFrame extends JFrame {
     public void Show() {
         InitGame();
         InitFrame();
-        InitStatus();
-        InitView();
-        InitControl();
+        InitStatus(); //Сверху
+        InitView(); //Посередине
+        InitControl(); //Снизу
         InitListeners();
 
         setVisible(true);

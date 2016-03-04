@@ -19,10 +19,11 @@ public class Game {
         if (players.contains(tmp)) {
             throw new PlayerAlreadyExist();
         }
-        else {
-            players.add(tmp);
-        }
         return tmp;
+    }
+
+    public void addPlayer(Player p) {
+        players.add(p);
     }
 
     public boolean isReady() {
