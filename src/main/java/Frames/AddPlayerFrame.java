@@ -37,6 +37,7 @@ public class AddPlayerFrame extends JDialog {
         LotInit(null); //Посередине
         ControlInit(); //Внизу
         ListenersInit();
+
         setVisible(true);
     }
 
@@ -46,7 +47,7 @@ public class AddPlayerFrame extends JDialog {
      */
     private void FrameInit(JFrame owner) {
         setTitle("Регистрация игрока");
-        setSize(500, 250);
+        setSize(500, 700);
         setResizable(false);
         setLocationRelativeTo(owner);
         setModalityType(ModalityType.TOOLKIT_MODAL);
@@ -57,7 +58,7 @@ public class AddPlayerFrame extends JDialog {
      * Инициализация панели регистрации
      */
     private void RegisterInit() {
-        regLabel = new JLabel("Регистрация игрока");
+        regLabel = new JLabel("Регистрация:");
         regStatus = new JLabel();
         if (isReg) {
             regStatus.setText("Регистрация выполнена");
@@ -67,6 +68,7 @@ public class AddPlayerFrame extends JDialog {
         }
         nickNameF = new JTextField("никнейм");
         nickNameF.setForeground(Color.LIGHT_GRAY);
+        nickNameF.setMaximumSize(new Dimension(300, 100));
         registerBut = new JButton("Регистрация");
         registerPanel = new JPanel();
         registerPanel.setLayout(new BoxLayout(registerPanel, BoxLayout.Y_AXIS));
@@ -75,20 +77,21 @@ public class AddPlayerFrame extends JDialog {
         registerPanel.add(nickNameF);
         registerPanel.add(registerBut);
 
-        this.add(registerBut, BorderLayout.NORTH);
+        this.add(registerPanel, BorderLayout.NORTH);
     }
 
     /**
      * Инициализация панели лотов
      */
     private void LotInit(String nick) {
-        lotsLabel = new JLabel("Выставленные предметы");
+        lotsLabel = new JLabel("Выставленные предметы:");
         if (nick != null) {
             registerNick = new JLabel("Игрок: " + nick);
         }
         else {
             registerNick = new JLabel("Регистрация не пройдена");
         }
+
         String columns[] = {"Предмет", "Цена"};
         lotsModel = new DefaultTableModel(null, columns);
         lotsTable = new MyTable(lotsModel);
@@ -98,13 +101,15 @@ public class AddPlayerFrame extends JDialog {
         removeLotBut = new JButton("Удалить предмет");
         lotControlPanel = new JPanel();
         lotControlPanel.setLayout(new BoxLayout(lotControlPanel, BoxLayout.X_AXIS));
+        lotControlPanel.add(addLotBut);
+        lotControlPanel.add(removeLotBut);
         lotPanel = new JPanel();
         lotPanel.setLayout(new BoxLayout(lotPanel, BoxLayout.Y_AXIS));
         lotPanel.add(lotsLabel);
         lotPanel.add(registerNick);
         lotPanel.add(lotsScroll);
         lotPanel.add(lotControlPanel);
-        this.add(lotPanel, BorderLayout.NORTH);
+        this.add(lotPanel, BorderLayout.CENTER);
     }
 
     /**
@@ -116,7 +121,7 @@ public class AddPlayerFrame extends JDialog {
         controlPanel = new JPanel();
         controlPanel.add(acceptBut);
         controlPanel.add(cancelBut);
-        this.add(controlPanel);
+        this.add(controlPanel, BorderLayout.SOUTH);
     }
 
     /**

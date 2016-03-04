@@ -28,6 +28,8 @@ public class MainFrame extends JFrame {
         InitListeners();
 
         setVisible(true);
+
+        new AddPlayerFrame(game, this);
     }
 
     private void InitGame() {
