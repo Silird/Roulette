@@ -1,5 +1,6 @@
 package Frames;
 
+import Listeners.MainFrameListeners.ListenerAddPlayer;
 import Listeners.MainFrameListeners.ListenerExit;
 import Structures.Game;
 
@@ -9,7 +10,7 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
     private JPanel panelControl, panelStatus, panelView, panelPlayers;
-    private JButton butExit;
+    private JButton butExit, butAddPlayer;
     private JLabel labelPlayers, labelActivePlayers, labelRemainPlayers;
     private JScrollPane scrollPlayers;
     private MyTable tablePlayers;
@@ -29,7 +30,7 @@ public class MainFrame extends JFrame {
 
         setVisible(true);
 
-        new AddPlayerFrame(game, this);
+        //new AddPlayerFrame(game, this);
     }
 
     private void InitGame() {
@@ -78,15 +79,19 @@ public class MainFrame extends JFrame {
 
     private void InitControl() {
 
+        butAddPlayer = new JButton("Добавить игрока");
         butExit = new JButton("Выход");
 
         panelControl = new JPanel();
-        panelControl.add(butExit, BorderLayout.EAST);
+        panelControl.setLayout(new BoxLayout(panelControl, BoxLayout.X_AXIS));
+        panelControl.add(butAddPlayer);
+        panelControl.add(butExit);
 
         this.add(panelControl, BorderLayout.SOUTH);
     }
 
     public void InitListeners() {
+        butAddPlayer.addActionListener(new ListenerAddPlayer(game, this));
         butExit.addActionListener(new ListenerExit());
     }
 }
