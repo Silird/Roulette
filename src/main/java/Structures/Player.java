@@ -1,5 +1,7 @@
 package Structures;
 
+import Structures.Exeptions.PlayerAlreadyExist;
+
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -14,7 +16,12 @@ public class Player implements Comparable<Player> {
         rate = 0;
     }
 
-    public void Register(String nick) {
+    public void Register(String nick, String[] registeredPlayers) throws PlayerAlreadyExist {
+        for (int i = 0; i < registeredPlayers.length; i++) {
+            if (registeredPlayers[i].equals(nick)) {
+                throw new PlayerAlreadyExist();
+            }
+        }
         nickName = nick;
     }
 
@@ -23,26 +30,11 @@ public class Player implements Comparable<Player> {
         rate += cost;
     }
 
-    /**
-     * Количество лотов в множестве
-     * @return
-     */
-    public int NumberOfLots() {
-        int i;
-        Iterator<Lot> it = lots.iterator();
-        i = 0;
-        while (it.hasNext()) {
-            i++;
-            it.next();
-        }
-        return i;
-    }
-
     public String[][] giveAllInfo() {
-        if (NumberOfLots() == 0) {
+        if (lots.size() == 0) {
             return null;
         }
-        String tmp[][] = new String[NumberOfLots()][6];
+        String tmp[][] = new String[lots.size()][6];
         Iterator<Lot> it = lots.iterator();
         Lot tmpLot;
         int i = 0;
@@ -53,6 +45,23 @@ public class Player implements Comparable<Player> {
             i++;
         }
         return tmp;
+    }
+
+    public void RemoveLot(int number) {
+        if (lots.size() < number) {
+            return;
+        }
+        Iterator<Lot> it = lots.iterator();
+        Lot tmpLot;
+        int i = 0;
+        while (it.hasNext()) {
+            tmpLot = it.next();
+            if (i == number) {
+                lots.remove(tmpLot);
+                return;
+            }
+            i++;
+        }
     }
 
     public String getNickName() {

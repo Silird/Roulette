@@ -2,6 +2,7 @@ package Structures;
 
 import Structures.Exeptions.PlayerAlreadyExist;
 
+import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Game {
@@ -14,10 +15,23 @@ public class Game {
         bank = 0;
     }
 
-    public Player registerPlayer(String nickName) throws PlayerAlreadyExist {
+    /*public Player registerPlayer(String nickName) throws PlayerAlreadyExist {
         Player tmp = new Player();
         if (players.contains(tmp)) {
             throw new PlayerAlreadyExist();
+        }
+        return tmp;
+    }*/
+
+    public String[] getAllNickNames() {
+        String tmp[] = new String[players.size()];
+        Iterator<Player> it = players.iterator();
+        int i = 0;
+        Player tmpPlayer;
+        while (it.hasNext()) {
+            tmpPlayer = it.next();
+            tmp[i] = tmpPlayer.getNickName();
+            i++;
         }
         return tmp;
     }

@@ -1,5 +1,6 @@
 package Listeners.AddPlayerListeners;
 
+import Structures.Exeptions.PlayerAlreadyExist;
 import Structures.Game;
 import Structures.Player;
 
@@ -13,9 +14,10 @@ public class ListenerRegisterPlayer implements ActionListener {
     private JDialog owner;
     private JLabel labelRegStatus, labelRegisterNick;
     private JButton butRegister, butAddLot, butRemoveLot;
+    private Game game;
 
     public ListenerRegisterPlayer(JDialog o, Player p, JTextField n, JLabel lR, JLabel lRN, JButton bR, JButton bAL,
-                                  JButton bRL) {
+                                  JButton bRL, Game g) {
         owner = o;
         currentPlayer = p;
         textNickName = n;
@@ -24,6 +26,7 @@ public class ListenerRegisterPlayer implements ActionListener {
         butRegister = bR;
         butAddLot = bAL;
         butRemoveLot = bRL;
+        game = g;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -33,12 +36,17 @@ public class ListenerRegisterPlayer implements ActionListener {
         }
         else {
             //currentPlayer = new Player(nickName);
-            currentPlayer.Register(nickName);
-            labelRegStatus.setText("Регистрация пройдена");
-            labelRegisterNick.setText("Игрок: " + currentPlayer.getNickName());
-            butRegister.setEnabled(false);
-            butAddLot.setEnabled(true);
-            butRemoveLot.setEnabled(true);
+            try {
+                currentPlayer.Register(nickName, game.getAllNickNames());
+                labelRegStatus.setText("Регистрация пройдена");
+                labelRegisterNick.setText("Игрок: " + currentPlayer.getNickName());
+                butRegister.setEnabled(false);
+                butAddLot.setEnabled(true);
+                butRemoveLot.setEnabled(true);
+            }
+            catch (PlayerAlreadyExist ex) {
+                JOptionPane.showMessageDialog(owner, ex.getMessage());
+            }
         }
     }
 }

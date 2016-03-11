@@ -1,10 +1,7 @@
 package Frames;
 
 
-import Listeners.AddPlayerListeners.ListenerAddLot;
-import Listeners.AddPlayerListeners.ListenerPlayerCancel;
-import Listeners.AddPlayerListeners.ListenerFocusNickField;
-import Listeners.AddPlayerListeners.ListenerRegisterPlayer;
+import Listeners.AddPlayerListeners.*;
 import Structures.Game;
 import Structures.Player;
 
@@ -144,5 +141,6 @@ public class AddPlayerFrame extends JDialog {
                 butRegister, butAddLot, butRemoveLot));
         butCancel.addActionListener(new ListenerPlayerCancel(this));
         butAddLot.addActionListener(new ListenerAddLot(this, currentPlayer, modelLots));
+        butRemoveLot.addActionListener(new ListenerRemoveLot(this, tableLots, modelLots, currentPlayer));
     }
 }
