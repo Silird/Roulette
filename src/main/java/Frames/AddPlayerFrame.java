@@ -1,7 +1,10 @@
 package Frames;
 
 
+import Listeners.AddPlayerListeners.ListenerAddLot;
+import Listeners.AddPlayerListeners.ListenerPlayerCancel;
 import Listeners.AddPlayerListeners.ListenerFocusNickField;
+import Listeners.AddPlayerListeners.ListenerRegisterPlayer;
 import Structures.Game;
 import Structures.Player;
 
@@ -10,21 +13,21 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class AddPlayerFrame extends JDialog {
-    private boolean isReg;
     private Game game;
     private Player currentPlayer;
     private JPanel panelRegister, panelLot, panelLotControl, panelControl;
     private JLabel labelRegStatus, labelRegisterNick, labelReg, labelLots;
     private JTextField textNickName;
-    private MyTable TableLots;
-    private DefaultTableModel ModelLots;
+    private MyTable tableLots;
+    private DefaultTableModel modelLots;
     private JScrollPane scrollLots;
     private JButton butRegister, butAddLot, butRemoveLot, butCancel, butAccept;
 
     public AddPlayerFrame(Game g, JFrame owner) {
         super(owner);
         game = g;
-        isReg = false;
+        //isReg = false;
+        currentPlayer = new Player();
         this.Show(owner);
     }
 
@@ -35,7 +38,7 @@ public class AddPlayerFrame extends JDialog {
     public void Show(JFrame owner) {
         FrameInit(owner);
         RegisterInit(); //Сверху
-        LotInit(null); //Посередине
+        LotInit(); //Посередине
         ControlInit(); //Внизу
         ListenersInit();
 
@@ -60,17 +63,20 @@ public class AddPlayerFrame extends JDialog {
      */
     private void RegisterInit() {
         labelReg = new JLabel("Регистрация:");
-        labelRegStatus = new JLabel();
-        if (isReg) {
-            labelRegStatus.setText("Регистрация выполнена");
+        if (currentPlayer.getNickName() != null) {
+            labelRegStatus = new JLabel("Регистрация выполнена");
+            textNickName = new JTextField(currentPlayer.getNickName());
         }
         else {
-            labelRegStatus.setText("Регистрация не пройдена");
+            labelRegStatus = new JLabel("Регистрация не пройдена");
+            textNickName = new JTextField("никнейм");
         }
-        textNickName = new JTextField("никнейм");
         textNickName.setForeground(Color.LIGHT_GRAY);
         textNickName.setMaximumSize(new Dimension(300, 100));
         butRegister = new JButton("Регистрация");
+        if (currentPlayer.getNickName() != null) {
+            butRegister.setEnabled(false);
+        }
         panelRegister = new JPanel();
         panelRegister.setLayout(new BoxLayout(panelRegister, BoxLayout.Y_AXIS));
         panelRegister.add(labelReg);
@@ -84,22 +90,25 @@ public class AddPlayerFrame extends JDialog {
     /**
      * Инициализация панели лотов
      */
-    private void LotInit(String nick) {
+    private void LotInit() {
         labelLots = new JLabel("Выставленные предметы:");
-        if (nick != null) {
-            labelRegisterNick = new JLabel("Игрок: " + nick);
+        if (currentPlayer.getNickName() != null) {
+            labelRegisterNick = new JLabel("Игрок: " + currentPlayer.getNickName());
         }
         else {
             labelRegisterNick = new JLabel("Регистрация не пройдена");
         }
 
         String columns[] = {"Предмет", "Цена"};
-        ModelLots = new DefaultTableModel(null, columns);
-        TableLots = new MyTable(ModelLots);
-        scrollLots = new JScrollPane();
-        scrollLots.add(TableLots);
+        modelLots = new DefaultTableModel(null, columns);
+        tableLots = new MyTable(modelLots);
+        scrollLots = new JScrollPane(tableLots);
         butAddLot = new JButton("Добавить предмет");
         butRemoveLot = new JButton("Удалить предмет");
+        if (currentPlayer.getNickName() == null) {
+            butAddLot.setEnabled(false);
+            butRemoveLot.setEnabled(false);
+        }
         panelLotControl = new JPanel();
         panelLotControl.setLayout(new BoxLayout(panelLotControl, BoxLayout.X_AXIS));
         panelLotControl.add(butAddLot);
@@ -131,5 +140,9 @@ public class AddPlayerFrame extends JDialog {
      */
     private void ListenersInit() {
         textNickName.addFocusListener(new ListenerFocusNickField(textNickName));
+        butRegister.addActionListener(new ListenerRegisterPlayer(this, currentPlayer, textNickName, labelRegStatus, labelRegisterNick,
+                butRegister, butAddLot, butRemoveLot));
+        butCancel.addActionListener(new ListenerPlayerCancel(this));
+        butAddLot.addActionListener(new ListenerAddLot(this, currentPlayer, modelLots));
     }
 }

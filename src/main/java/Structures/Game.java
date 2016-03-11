@@ -15,7 +15,7 @@ public class Game {
     }
 
     public Player registerPlayer(String nickName) throws PlayerAlreadyExist {
-        Player tmp = new Player(nickName);
+        Player tmp = new Player();
         if (players.contains(tmp)) {
             throw new PlayerAlreadyExist();
         }

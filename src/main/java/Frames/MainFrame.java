@@ -65,9 +65,9 @@ public class MainFrame extends JFrame {
         String columns[] = {"Игрок", "Внесённая сумма", "Шанс победы"};
         modelPlayers = new DefaultTableModel(null, columns);
         tablePlayers = new MyTable(modelPlayers);
-        scrollPlayers = new JScrollPane();
-        scrollPlayers.add(tablePlayers);
+        scrollPlayers = new JScrollPane(tablePlayers);
         panelPlayers = new JPanel();
+        panelPlayers.setLayout(new BoxLayout(panelPlayers, BoxLayout.Y_AXIS));
         panelPlayers.add(labelPlayers, BorderLayout.NORTH);
         panelPlayers.add(scrollPlayers, BorderLayout.SOUTH);
 
