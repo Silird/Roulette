@@ -2,11 +2,16 @@ package Structures;
 
 public class Lot implements Comparable<Lot> {
     private String name;
-    private int cost;
+    private int cost, count;
 
-    public Lot (String n, int c) {
+    public Lot (String n, int c, int cou) {
         name = n;
         cost = c;
+        count = cou;
+    }
+
+    public void Increase(int cou) {
+        count += cou;
     }
 
     public String getName() {
@@ -17,12 +22,19 @@ public class Lot implements Comparable<Lot> {
         return cost;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public int getOverallCost() {
+        return count*cost;
+    }
+
     public int compareTo(Lot o) {
         return name.compareTo(o.getName());
     }
-    /*
+
     public boolean equals(Lot o) {
-        return
+        return name.equals(o.getName());
     }
-    */
 }

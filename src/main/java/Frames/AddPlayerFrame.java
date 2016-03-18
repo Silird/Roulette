@@ -13,7 +13,7 @@ public class AddPlayerFrame extends JDialog {
     private Game game;
     private Player currentPlayer;
     private JPanel panelRegister, panelLot, panelLotControl, panelControl;
-    private JLabel labelRegStatus, labelRegisterNick, labelReg, labelLots;
+    private JLabel labelRegStatus, labelRegisterNick, labelReg, labelRate, labelLots;
     private JTextField textNickName;
     private MyTable tableLots;
     private DefaultTableModel modelLots;
@@ -95,8 +95,8 @@ public class AddPlayerFrame extends JDialog {
         else {
             labelRegisterNick = new JLabel("Регистрация не пройдена");
         }
-
-        String columns[] = {"Предмет", "Цена"};
+        labelRate = new JLabel("Общая цена: " + String.valueOf(currentPlayer.getRate()));
+        String columns[] = {"Предмет", "Цена", "Количество"};
         modelLots = new DefaultTableModel(null, columns);
         tableLots = new MyTable(modelLots);
         scrollLots = new JScrollPane(tableLots);
@@ -115,6 +115,7 @@ public class AddPlayerFrame extends JDialog {
         panelLot.setLayout(new BoxLayout(panelLot, BoxLayout.Y_AXIS));
         panelLot.add(labelLots);
         panelLot.add(labelRegisterNick);
+        panelLot.add(labelRate);
         panelLot.add(scrollLots);
         panelLot.add(panelLotControl);
         this.add(panelLot, BorderLayout.CENTER);
@@ -138,9 +139,9 @@ public class AddPlayerFrame extends JDialog {
     private void ListenersInit() {
         textNickName.addFocusListener(new ListenerFocusNickField(textNickName));
         butRegister.addActionListener(new ListenerRegisterPlayer(this, currentPlayer, textNickName, labelRegStatus, labelRegisterNick,
-                butRegister, butAddLot, butRemoveLot));
+                butRegister, butAddLot, butRemoveLot, game));
         butCancel.addActionListener(new ListenerPlayerCancel(this));
-        butAddLot.addActionListener(new ListenerAddLot(this, currentPlayer, modelLots));
-        butRemoveLot.addActionListener(new ListenerRemoveLot(this, tableLots, modelLots, currentPlayer));
+        butAddLot.addActionListener(new ListenerAddLot(this, currentPlayer, modelLots, labelRate));
+        butRemoveLot.addActionListener(new ListenerRemoveLot(this, tableLots, modelLots, currentPlayer, labelRate));
     }
 }

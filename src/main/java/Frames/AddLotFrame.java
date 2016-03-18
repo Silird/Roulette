@@ -1,5 +1,6 @@
 package Frames;
 
+import Listeners.AddLotListeners.ListenerFocusCountField;
 import Listeners.AddLotListeners.ListenerLotAdd;
 import Listeners.AddPlayerListeners.ListenerPlayerCancel;
 import Structures.Player;
@@ -10,8 +11,8 @@ import java.awt.*;
 public class AddLotFrame extends JDialog {
     private Player currentPlayer;
     private JPanel panelLot, panelControl;
-    private JLabel labelName, labelCost;
-    private JTextField textName, textCost;
+    private JLabel labelName, labelCost, labelCount;
+    private JTextField textName, textCost, textCount;
     private JButton butAdd, butCancel;
 
     public AddLotFrame(Player cP, JDialog owner) {
@@ -42,7 +43,7 @@ public class AddLotFrame extends JDialog {
      */
     private void FrameInit(JDialog owner) {
         setTitle("Добавление лота");
-        setSize(300, 150);
+        setSize(300, 200);
         setResizable(false);
         setLocationRelativeTo(owner);
         setModalityType(ModalityType.TOOLKIT_MODAL);
@@ -59,12 +60,18 @@ public class AddLotFrame extends JDialog {
         labelCost = new JLabel("Цена:");
         textCost = new JTextField();
         textCost.setMaximumSize(new Dimension(200, 100));
+        labelCount = new JLabel("Количество предметов:");
+        textCount = new JTextField("1");
+        textCount.setForeground(Color.LIGHT_GRAY);
+        textCount.setMaximumSize(new Dimension(200, 100));
         panelLot = new JPanel();
         panelLot.setLayout(new BoxLayout(panelLot, BoxLayout.Y_AXIS));
         panelLot.add(labelName);
         panelLot.add(textName);
         panelLot.add(labelCost);
         panelLot.add(textCost);
+        panelLot.add(labelCount);
+        panelLot.add(textCount);
         this.add(panelLot, BorderLayout.NORTH);
     }
 
@@ -85,6 +92,7 @@ public class AddLotFrame extends JDialog {
      */
     private void ListenersInit() {
         butCancel.addActionListener(new ListenerPlayerCancel(this));
-        butAdd.addActionListener(new ListenerLotAdd(this, textName, textCost, currentPlayer));
+        butAdd.addActionListener(new ListenerLotAdd(this, textName, textCost, textCount, currentPlayer));
+        textCount.addFocusListener(new ListenerFocusCountField(textCount));
     }
 }

@@ -25,9 +25,20 @@ public class Player implements Comparable<Player> {
         nickName = nick;
     }
 
-    public void addLot(String name, int cost) {
-        lots.add(new Lot(name, cost));
-        rate += cost;
+    public void addLot(String name, int cost, int count) {
+        Iterator<Lot> it = lots.iterator();
+        Lot tmpLot, SampleLot;
+        SampleLot = new Lot(name, cost, count);
+        while (it.hasNext()) {
+            tmpLot = it.next();
+            if (tmpLot.equals(SampleLot)) {
+                tmpLot.Increase(SampleLot.getCount());
+                rate += tmpLot.getCost()*count;
+                return;
+            }
+        }
+        lots.add(SampleLot);
+        rate += cost*count;
     }
 
     public String[][] giveAllInfo() {
@@ -42,6 +53,7 @@ public class Player implements Comparable<Player> {
             tmpLot = it.next();
             tmp[i][0] = tmpLot.getName();
             tmp[i][1] = String.valueOf(tmpLot.getCost());
+            tmp[i][2] = String.valueOf(tmpLot.getCount());
             i++;
         }
         return tmp;
@@ -57,6 +69,7 @@ public class Player implements Comparable<Player> {
         while (it.hasNext()) {
             tmpLot = it.next();
             if (i == number) {
+                rate -= tmpLot.getOverallCost();
                 lots.remove(tmpLot);
                 return;
             }

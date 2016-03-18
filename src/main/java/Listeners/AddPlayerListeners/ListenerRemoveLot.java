@@ -14,12 +14,14 @@ public class ListenerRemoveLot implements ActionListener {
     private MyTable tableLots;
     private DefaultTableModel modelLots;
     private Player currentPlayer;
+    private JLabel labelRate;
 
-    public ListenerRemoveLot(JDialog o, MyTable tL, DefaultTableModel mL, Player cP) {
+    public ListenerRemoveLot(JDialog o, MyTable tL, DefaultTableModel mL, Player cP, JLabel lR) {
         owner = o;
         tableLots = tL;
         modelLots = mL;
         currentPlayer = cP;
+        labelRate = lR;
     }
 
     private class NotSelectedLotException extends Exception {
@@ -44,6 +46,7 @@ public class ListenerRemoveLot implements ActionListener {
             }
             currentPlayer.RemoveLot(tableLots.getSelectedRow());
             new RefreshTable(modelLots, currentPlayer);
+            labelRate.setText("Общая цена: " + String.valueOf(currentPlayer.getRate()));
         }
         catch (NotSelectedLotException ex) {
             JOptionPane.showMessageDialog(owner, ex.getMessage());
