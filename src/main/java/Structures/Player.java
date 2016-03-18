@@ -5,6 +5,11 @@ import Structures.Exeptions.PlayerAlreadyExist;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+/**
+ * Структура игрока
+ * Содержит:
+ * Никнейм, все поставленные лоты, суммарный вклад в игру
+ */
 public class Player implements Comparable<Player> {
     private String nickName;
     private TreeSet<Lot> lots;
@@ -16,6 +21,11 @@ public class Player implements Comparable<Player> {
         rate = 0;
     }
 
+    /**
+     * Регистрация игрока
+     * @param registeredPlayers списко уже зарегестрированных игроков
+     * @throws PlayerAlreadyExist Если игрок уже зарегестрирован
+     */
     public void Register(String nick, String[] registeredPlayers) throws PlayerAlreadyExist {
         for (int i = 0; i < registeredPlayers.length; i++) {
             if (registeredPlayers[i].equals(nick)) {
@@ -25,6 +35,9 @@ public class Player implements Comparable<Player> {
         nickName = nick;
     }
 
+    /**
+     * Добавление лота
+     */
     public void addLot(String name, int cost, int count) {
         Iterator<Lot> it = lots.iterator();
         Lot tmpLot, SampleLot;
@@ -41,6 +54,9 @@ public class Player implements Comparable<Player> {
         rate += cost*count;
     }
 
+    /**
+     * Получение всей информации для заполнения таблицы
+     */
     public String[][] giveAllInfo() {
         if (lots.size() == 0) {
             return null;

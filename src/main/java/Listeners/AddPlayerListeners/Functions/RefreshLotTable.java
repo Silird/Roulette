@@ -4,6 +4,9 @@ import Structures.Player;
 
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Функция для обновления таблицы лотов
+ */
 public class RefreshLotTable {
     public RefreshLotTable(DefaultTableModel modelLots, Player currentPlayer) {
         int rows = modelLots.getRowCount();

@@ -1,7 +1,7 @@
 package Listeners.MainFrameListeners;
 
 import Frames.MyTable;
-import Listeners.AddLotListeners.Funcions.RefreshPlayerTable;
+import Listeners.MainFrameListeners.Funcions.RefreshPlayerTable;
 import Structures.Game;
 
 import javax.swing.*;
@@ -9,6 +9,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Удаление выделенного игрока
+ */
 public class ListenerRemovePlayer implements ActionListener {
     private JFrame owner;
     private MyTable tablePlayers;

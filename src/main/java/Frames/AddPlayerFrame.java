@@ -9,6 +9,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
+/**
+ * Форма для добавления нового игрока
+ */
 public class AddPlayerFrame extends JDialog {
     private Game game;
     private Player currentPlayer;
@@ -23,7 +26,6 @@ public class AddPlayerFrame extends JDialog {
     public AddPlayerFrame(Game g, JFrame owner) {
         super(owner);
         game = g;
-        //isReg = false;
         currentPlayer = new Player();
         this.Show(owner);
     }
@@ -110,7 +112,6 @@ public class AddPlayerFrame extends JDialog {
         panelLotControl.setLayout(new BoxLayout(panelLotControl, BoxLayout.X_AXIS));
         panelLotControl.add(butAddLot);
         panelLotControl.add(butRemoveLot);
-        //panelControl.setEnabled(false);
         panelLot = new JPanel();
         panelLot.setLayout(new BoxLayout(panelLot, BoxLayout.Y_AXIS));
         panelLot.add(labelLots);

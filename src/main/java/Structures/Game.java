@@ -5,24 +5,25 @@ import Structures.Exeptions.PlayerAlreadyExist;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+/**
+ * Класс всей игры
+ * Содержит:
+ * Список всех игроков, общую вложённую сумму
+ */
 public class Game {
     private TreeSet<Player> players;
     private int bank;
     final int minPlayers = 4;
+
 
     public Game() {
         players = new TreeSet<Player>();
         bank = 0;
     }
 
-    /*public Player registerPlayer(String nickName) throws PlayerAlreadyExist {
-        Player tmp = new Player();
-        if (players.contains(tmp)) {
-            throw new PlayerAlreadyExist();
-        }
-        return tmp;
-    }*/
-
+    /**
+     * Выдаёт массив из всех зарегестрированных ников
+     */
     public String[] getAllNickNames() {
         String tmp[] = new String[players.size()];
         Iterator<Player> it = players.iterator();
@@ -36,6 +37,9 @@ public class Game {
         return tmp;
     }
 
+    /**
+     * Выдаёт всю информацию, нужную для заполнения таблицы
+     */
     public String[][] giveAllInfo() {
         if (players.size() == 0) {
             return null;
@@ -58,11 +62,18 @@ public class Game {
         return tmp;
     }
 
+    /**
+     * Добавление нового игрока
+     */
     public void addPlayer(Player p) {
         players.add(p);
         bank += p.getRate();
     }
 
+    /**
+     * Удалить игрока под данным номером
+     * @param number - данный номер
+     */
     public void RemovePlayer(int number) {
         if (players.size() < number) {
             return;
@@ -81,6 +92,9 @@ public class Game {
         }
     }
 
+    /**
+     * Проверка на готовность системы к игре
+     */
     public boolean isReady() {
         if (players.size() > minPlayers) {
             return true;

@@ -9,6 +9,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Открытие формы для добавления нового лота
+ * Обновление таблицы и лэйблов
+ */
 public class ListenerAddLot implements ActionListener {
     private JDialog owner;
     private Player currentPlayer;

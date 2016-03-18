@@ -1,7 +1,7 @@
 package Listeners.MainFrameListeners;
 
 import Frames.AddPlayerFrame;
-import Listeners.AddLotListeners.Funcions.RefreshPlayerTable;
+import Listeners.MainFrameListeners.Funcions.RefreshPlayerTable;
 import Structures.Game;
 
 import javax.swing.*;
@@ -9,6 +9,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Открытие формы для добавления игрока
+ * Обновление таблицы и лэйблов
+ */
 public class ListenerAddPlayer implements ActionListener {
     private JFrame owner;
     private Game game;
@@ -22,6 +26,7 @@ public class ListenerAddPlayer implements ActionListener {
         labelActivePlayers = lAP;
         labelRemainPlayers = lRP;
     }
+
     public void actionPerformed(ActionEvent e) {
         new AddPlayerFrame(game, owner);
         new RefreshPlayerTable(modelPlayers, game);

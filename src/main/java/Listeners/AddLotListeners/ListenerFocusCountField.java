@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+/**
+ * Фокус слушатель для поля количества создаваемых лотов
+ */
 public class ListenerFocusCountField implements FocusListener {
     private JTextField textCount;
 

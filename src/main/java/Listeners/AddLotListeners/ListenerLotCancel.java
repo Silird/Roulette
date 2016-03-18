@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Отмена добавления лота
+ * Закрытие формы
+ */
 public class ListenerLotCancel implements ActionListener {
     private JDialog owner;
 

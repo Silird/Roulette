@@ -2,12 +2,16 @@ package Frames;
 
 import Listeners.AddLotListeners.ListenerFocusCountField;
 import Listeners.AddLotListeners.ListenerLotAdd;
+import Listeners.AddLotListeners.ListenerLotCancel;
 import Listeners.AddPlayerListeners.ListenerPlayerCancel;
 import Structures.Player;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Форма для добавлеия нового лота
+ */
 public class AddLotFrame extends JDialog {
     private Player currentPlayer;
     private JPanel panelLot, panelControl;
@@ -17,7 +21,6 @@ public class AddLotFrame extends JDialog {
 
     public AddLotFrame(Player cP, JDialog owner) {
         super(owner);
-        //isReg = false;
         currentPlayer = cP;
         this.Show(owner);
     }
@@ -91,7 +94,7 @@ public class AddLotFrame extends JDialog {
      * Инициализация слушателей
      */
     private void ListenersInit() {
-        butCancel.addActionListener(new ListenerPlayerCancel(this));
+        butCancel.addActionListener(new ListenerLotCancel(this));
         butAdd.addActionListener(new ListenerLotAdd(this, textName, textCost, textCount, currentPlayer));
         textCount.addFocusListener(new ListenerFocusCountField(textCount));
     }

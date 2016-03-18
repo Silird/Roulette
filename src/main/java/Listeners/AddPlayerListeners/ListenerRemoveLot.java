@@ -9,6 +9,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Удаление выделенного лота
+ */
 public class ListenerRemoveLot implements ActionListener {
     private JDialog owner;
     private MyTable tableLots;

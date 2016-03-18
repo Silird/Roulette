@@ -1,9 +1,12 @@
-package Listeners.AddLotListeners.Funcions;
+package Listeners.MainFrameListeners.Funcions;
 
 import Structures.Game;
 
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Функция для обновления таблицы игроков
+ */
 public class RefreshPlayerTable {
     public RefreshPlayerTable(DefaultTableModel modelPlayers, Game game) {
         int rows = modelPlayers.getRowCount();

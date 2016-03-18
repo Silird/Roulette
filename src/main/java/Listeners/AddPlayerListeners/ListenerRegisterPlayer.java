@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Регистрация игрока
+ */
 public class ListenerRegisterPlayer implements ActionListener {
     private Player currentPlayer;
     private JTextField textNickName;
@@ -36,7 +39,6 @@ public class ListenerRegisterPlayer implements ActionListener {
             JOptionPane.showMessageDialog(owner, "Поле ввода никнейма не заполнено");
         }
         else {
-            //currentPlayer = new Player(nickName);
             try {
                 currentPlayer.Register(nickName, game.getAllNickNames());
                 labelRegStatus.setText("Регистрация пройдена");

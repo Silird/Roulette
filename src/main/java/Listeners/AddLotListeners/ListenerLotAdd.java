@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Добавление нового лота
+ * Закрытие формы
+ */
 public class ListenerLotAdd implements ActionListener {
     private JDialog owner;
     private JTextField textName, textCost, textCount;

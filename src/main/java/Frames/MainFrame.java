@@ -9,6 +9,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
+/**
+ * Главная форма
+ */
 public class MainFrame extends JFrame {
     private JPanel panelControl, panelStatus, panelView, panelPlayers;
     private JButton butExit, butAddPlayer, butRemovePlayer;
@@ -30,8 +33,6 @@ public class MainFrame extends JFrame {
         InitListeners();
 
         setVisible(true);
-
-        //new AddPlayerFrame(game, this);
     }
 
     private void InitGame() {
@@ -49,6 +50,9 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * Панель статуса игры
+     */
     private void InitStatus() {
         labelActivePlayers = new JLabel("Игроков в игре: " + String.valueOf(game.getCountPlayers()) + "    ");
         labelRemainPlayers = new JLabel("Игроков для начала: " + String.valueOf(game.getMinPlayers()) + "    ");
@@ -61,6 +65,10 @@ public class MainFrame extends JFrame {
         this.add(panelStatus, BorderLayout.NORTH);
     }
 
+    /**
+     * Инициализация панели для отображения информации по ходу игры
+     * Делится на информацию по игрокам и на поле для провождения самой игры
+     */
     private void InitView() {
         labelPlayers = new JLabel("Игроки:");
         String columns[] = {"Игрок", "Внесённая сумма", "Шанс победы"};
@@ -78,6 +86,9 @@ public class MainFrame extends JFrame {
         this.add(panelView, BorderLayout.CENTER);
     }
 
+    /**
+     * Инициализация кнопок
+     */
     private void InitControl() {
 
         butAddPlayer = new JButton("Добавить игрока");
@@ -93,6 +104,9 @@ public class MainFrame extends JFrame {
         this.add(panelControl, BorderLayout.SOUTH);
     }
 
+    /**
+     * Инициализация слушателей
+     */
     public void InitListeners() {
         butAddPlayer.addActionListener(new ListenerAddPlayer(game, this, modelPlayers, labelActivePlayers,
                 labelRemainPlayers));

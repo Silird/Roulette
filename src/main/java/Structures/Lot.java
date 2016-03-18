@@ -1,5 +1,8 @@
 package Structures;
 
+/**
+ * Структура лота в количестве @count
+ */
 public class Lot implements Comparable<Lot> {
     private String name;
     private int cost, count;
@@ -10,6 +13,9 @@ public class Lot implements Comparable<Lot> {
         count = cou;
     }
 
+    /**
+     * Увеличить количесво данных лотов на @param cou
+     */
     public void Increase(int cou) {
         count += cou;
     }
@@ -26,6 +32,10 @@ public class Lot implements Comparable<Lot> {
         return count;
     }
 
+    /**
+     * Получить полную цену всех лотов
+     * @return
+     */
     public int getOverallCost() {
         return count*cost;
     }

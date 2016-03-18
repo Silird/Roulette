@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+/**
+ * Фокус слушатель для поля ввода никнейма
+ */
 public class ListenerFocusNickField implements FocusListener {
     private JTextField textNickName;
 

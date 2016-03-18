@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Отмена добавления игрока
+ * Закрытие формы
+ */
 public class ListenerPlayerCancel implements ActionListener {
     private JDialog owner;
 
