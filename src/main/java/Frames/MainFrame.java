@@ -2,6 +2,7 @@ package Frames;
 
 import Listeners.MainFrameListeners.ListenerAddPlayer;
 import Listeners.MainFrameListeners.ListenerExit;
+import Listeners.MainFrameListeners.ListenerRemovePlayer;
 import Structures.Game;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
     private JPanel panelControl, panelStatus, panelView, panelPlayers;
-    private JButton butExit, butAddPlayer;
+    private JButton butExit, butAddPlayer, butRemovePlayer;
     private JLabel labelPlayers, labelActivePlayers, labelRemainPlayers;
     private JScrollPane scrollPlayers;
     private MyTable tablePlayers;
@@ -80,11 +81,13 @@ public class MainFrame extends JFrame {
     private void InitControl() {
 
         butAddPlayer = new JButton("Добавить игрока");
+        butRemovePlayer = new JButton("Удалить игрока");
         butExit = new JButton("Выход");
 
         panelControl = new JPanel();
         panelControl.setLayout(new BoxLayout(panelControl, BoxLayout.X_AXIS));
         panelControl.add(butAddPlayer);
+        panelControl.add(butRemovePlayer);
         panelControl.add(butExit);
 
         this.add(panelControl, BorderLayout.SOUTH);
@@ -94,5 +97,7 @@ public class MainFrame extends JFrame {
         butAddPlayer.addActionListener(new ListenerAddPlayer(game, this, modelPlayers, labelActivePlayers,
                 labelRemainPlayers));
         butExit.addActionListener(new ListenerExit());
+        butRemovePlayer.addActionListener(new ListenerRemovePlayer(this, tablePlayers, modelPlayers,
+                game, labelActivePlayers, labelRemainPlayers));
     }
 }

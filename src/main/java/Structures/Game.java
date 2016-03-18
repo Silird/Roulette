@@ -63,6 +63,24 @@ public class Game {
         bank += p.getRate();
     }
 
+    public void RemovePlayer(int number) {
+        if (players.size() < number) {
+            return;
+        }
+        Iterator<Player> it = players.iterator();
+        Player tmpPlayer;
+        int i = 0;
+        while (it.hasNext()) {
+            tmpPlayer = it.next();
+            if (i == number) {
+                bank -= tmpPlayer.getRate();
+                players.remove(tmpPlayer);
+                return;
+            }
+            i++;
+        }
+    }
+
     public boolean isReady() {
         if (players.size() > minPlayers) {
             return true;

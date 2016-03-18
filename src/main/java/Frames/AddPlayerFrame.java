@@ -126,6 +126,9 @@ public class AddPlayerFrame extends JDialog {
      */
     private void ControlInit() {
         butAccept = new JButton("Добавить игрока");
+        if (currentPlayer.getNickName() == null) {
+            butAccept.setEnabled(false);
+        }
         butCancel = new JButton("Отмена");
         panelControl = new JPanel();
         panelControl.add(butAccept);
@@ -139,7 +142,7 @@ public class AddPlayerFrame extends JDialog {
     private void ListenersInit() {
         textNickName.addFocusListener(new ListenerFocusNickField(textNickName));
         butRegister.addActionListener(new ListenerRegisterPlayer(this, currentPlayer, textNickName, labelRegStatus, labelRegisterNick,
-                butRegister, butAddLot, butRemoveLot, game));
+                butRegister, butAddLot, butRemoveLot, butAccept, game));
         butCancel.addActionListener(new ListenerPlayerCancel(this));
         butAddLot.addActionListener(new ListenerAddLot(this, currentPlayer, modelLots, labelRate));
         butRemoveLot.addActionListener(new ListenerRemoveLot(this, tableLots, modelLots, currentPlayer, labelRate));

@@ -13,11 +13,11 @@ public class ListenerRegisterPlayer implements ActionListener {
     private JTextField textNickName;
     private JDialog owner;
     private JLabel labelRegStatus, labelRegisterNick;
-    private JButton butRegister, butAddLot, butRemoveLot;
+    private JButton butRegister, butAddLot, butRemoveLot, butAccept;
     private Game game;
 
     public ListenerRegisterPlayer(JDialog o, Player p, JTextField n, JLabel lR, JLabel lRN, JButton bR, JButton bAL,
-                                  JButton bRL, Game g) {
+                                  JButton bRL, JButton bA, Game g) {
         owner = o;
         currentPlayer = p;
         textNickName = n;
@@ -26,6 +26,7 @@ public class ListenerRegisterPlayer implements ActionListener {
         butRegister = bR;
         butAddLot = bAL;
         butRemoveLot = bRL;
+        butAccept = bA;
         game = g;
     }
 
@@ -43,6 +44,7 @@ public class ListenerRegisterPlayer implements ActionListener {
                 butRegister.setEnabled(false);
                 butAddLot.setEnabled(true);
                 butRemoveLot.setEnabled(true);
+                butAccept.setEnabled(true);
             }
             catch (PlayerAlreadyExist ex) {
                 JOptionPane.showMessageDialog(owner, ex.getMessage());

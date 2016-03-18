@@ -26,7 +26,7 @@ public class ListenerRemoveLot implements ActionListener {
 
     private class NotSelectedLotException extends Exception {
         public NotSelectedLotException() {
-            super("Не выбран мастер для удаления");
+            super("Не выбран лот для удаления");
         }
     }
 
