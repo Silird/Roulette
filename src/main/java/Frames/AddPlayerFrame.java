@@ -143,5 +143,6 @@ public class AddPlayerFrame extends JDialog {
         butCancel.addActionListener(new ListenerPlayerCancel(this));
         butAddLot.addActionListener(new ListenerAddLot(this, currentPlayer, modelLots, labelRate));
         butRemoveLot.addActionListener(new ListenerRemoveLot(this, tableLots, modelLots, currentPlayer, labelRate));
+        butAccept.addActionListener(new ListenerPlayerAdd(this, game, currentPlayer));
     }
 }

@@ -4,8 +4,8 @@ import Structures.Player;
 
 import javax.swing.table.DefaultTableModel;
 
-public class RefreshTable {
-    public RefreshTable(DefaultTableModel modelLots, Player currentPlayer) {
+public class RefreshLotTable {
+    public RefreshLotTable(DefaultTableModel modelLots, Player currentPlayer) {
         int rows = modelLots.getRowCount();
         for (int i = 0; i < rows; i++) {
             modelLots.removeRow(0);

@@ -91,7 +91,8 @@ public class MainFrame extends JFrame {
     }
 
     public void InitListeners() {
-        butAddPlayer.addActionListener(new ListenerAddPlayer(game, this));
+        butAddPlayer.addActionListener(new ListenerAddPlayer(game, this, modelPlayers, labelActivePlayers,
+                labelRemainPlayers));
         butExit.addActionListener(new ListenerExit());
     }
 }

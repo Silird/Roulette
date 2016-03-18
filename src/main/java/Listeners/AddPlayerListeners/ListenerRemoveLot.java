@@ -1,7 +1,7 @@
 package Listeners.AddPlayerListeners;
 
 import Frames.MyTable;
-import Listeners.AddPlayerListeners.Functions.RefreshTable;
+import Listeners.AddPlayerListeners.Functions.RefreshLotTable;
 import Structures.Player;
 
 import javax.swing.*;
@@ -45,7 +45,7 @@ public class ListenerRemoveLot implements ActionListener {
                 throw new DoubleSelectedLotException();
             }
             currentPlayer.RemoveLot(tableLots.getSelectedRow());
-            new RefreshTable(modelLots, currentPlayer);
+            new RefreshLotTable(modelLots, currentPlayer);
             labelRate.setText("Общая цена: " + String.valueOf(currentPlayer.getRate()));
         }
         catch (NotSelectedLotException ex) {

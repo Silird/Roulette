@@ -1,7 +1,7 @@
 package Listeners.AddPlayerListeners;
 
 import Frames.AddLotFrame;
-import Listeners.AddPlayerListeners.Functions.RefreshTable;
+import Listeners.AddPlayerListeners.Functions.RefreshLotTable;
 import Structures.Player;
 
 import javax.swing.*;
@@ -24,7 +24,7 @@ public class ListenerAddLot implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         new AddLotFrame(currentPlayer, owner);
-        new RefreshTable(modelLots, currentPlayer);
+        new RefreshLotTable(modelLots, currentPlayer);
         labelRate.setText("Общая цена: " + String.valueOf(currentPlayer.getRate()));
     }
 }

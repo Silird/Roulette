@@ -36,8 +36,31 @@ public class Game {
         return tmp;
     }
 
+    public String[][] giveAllInfo() {
+        if (players.size() == 0) {
+            return null;
+        }
+        double dRate, dChance, dBank;
+        String tmp[][] = new String[players.size()][6];
+        Iterator<Player> it = players.iterator();
+        Player tmpPlayer;
+        int i = 0;
+        while (it.hasNext()) {
+            tmpPlayer = it.next();
+            tmp[i][0] = tmpPlayer.getNickName();
+            tmp[i][1] = String.valueOf(tmpPlayer.getRate());
+            dRate = tmpPlayer.getRate();
+            dBank = bank;
+            dChance = dRate/dBank*100;
+            tmp[i][2] = String.valueOf(dChance) + "%";
+            i++;
+        }
+        return tmp;
+    }
+
     public void addPlayer(Player p) {
         players.add(p);
+        bank += p.getRate();
     }
 
     public boolean isReady() {
