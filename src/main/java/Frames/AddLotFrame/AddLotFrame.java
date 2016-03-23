@@ -14,10 +14,8 @@ import java.awt.*;
  */
 public class AddLotFrame extends JDialog {
     private Player currentPlayer;
-    private JPanel panelLot, panelControl;
-    private JLabel labelName, labelCost, labelCount;
-    private JTextField textName, textCost, textCount;
-    private JButton butAdd, butCancel;
+    private LotAddLotFrame lotStruct;
+    private ControlAddLotFrame controlStruct;
 
     public AddLotFrame(Player cP, JDialog owner) {
         super(owner);
@@ -57,45 +55,25 @@ public class AddLotFrame extends JDialog {
      * Инициализация панели лота
      */
     private void LotInit() {
-        labelName = new JLabel("Название:");
-        textName = new JTextField();
-        textName.setMaximumSize(new Dimension(300, 100));
-        labelCost = new JLabel("Цена:");
-        textCost = new JTextField();
-        textCost.setMaximumSize(new Dimension(200, 100));
-        labelCount = new JLabel("Количество предметов:");
-        textCount = new JTextField("1");
-        textCount.setForeground(Color.LIGHT_GRAY);
-        textCount.setMaximumSize(new Dimension(200, 100));
-        panelLot = new JPanel();
-        panelLot.setLayout(new BoxLayout(panelLot, BoxLayout.Y_AXIS));
-        panelLot.add(labelName);
-        panelLot.add(textName);
-        panelLot.add(labelCost);
-        panelLot.add(textCost);
-        panelLot.add(labelCount);
-        panelLot.add(textCount);
-        this.add(panelLot, BorderLayout.NORTH);
+        lotStruct = new LotAddLotFrame();
+        this.add(lotStruct.panelLot, BorderLayout.NORTH);
     }
 
     /**
      * Инициализация Кнопок
      */
     private void ControlInit() {
-        butAdd = new JButton("Добавить");
-        butCancel = new JButton("Отмена");
-        panelControl = new JPanel();
-        panelControl.add(butAdd);
-        panelControl.add(butCancel);
-        this.add(panelControl, BorderLayout.SOUTH);
+        controlStruct = new ControlAddLotFrame();
+
+        this.add(controlStruct.panelControl, BorderLayout.SOUTH);
     }
 
     /**
      * Инициализация слушателей
      */
     private void ListenersInit() {
-        butCancel.addActionListener(new ListenerLotCancel(this));
-        butAdd.addActionListener(new ListenerLotAdd(this, textName, textCost, textCount, currentPlayer));
-        textCount.addFocusListener(new ListenerFocusCountField(textCount));
+        controlStruct.butCancel.addActionListener(new ListenerLotCancel(this));
+        controlStruct.butAdd.addActionListener(new ListenerLotAdd(this, lotStruct, currentPlayer));
+        lotStruct.textCount.addFocusListener(new ListenerFocusCountField(lotStruct.textCount));
     }
 }

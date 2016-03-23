@@ -1,6 +1,7 @@
 package Listeners.AddPlayerListeners;
 
 import Frames.AddLotFrame.AddLotFrame;
+import Frames.AddPlayerFrame.LotAddPlayerFrame;
 import Listeners.AddPlayerListeners.Functions.RefreshLotTable;
 import Structures.Player;
 
@@ -16,19 +17,17 @@ import java.awt.event.ActionListener;
 public class ListenerAddLot implements ActionListener {
     private JDialog owner;
     private Player currentPlayer;
-    private DefaultTableModel modelLots;
-    private JLabel labelRate;
+    private LotAddPlayerFrame lotStruct;
 
-    public ListenerAddLot(JDialog o, Player cP, DefaultTableModel mL, JLabel lR) {
+    public ListenerAddLot(JDialog o, Player cP, LotAddPlayerFrame lS) {
         owner = o;
         currentPlayer = cP;
-        modelLots = mL;
-        labelRate = lR;
+        lotStruct = lS;
     }
 
     public void actionPerformed(ActionEvent e) {
         new AddLotFrame(currentPlayer, owner);
-        new RefreshLotTable(modelLots, currentPlayer);
-        labelRate.setText("Общая цена: " + String.valueOf(currentPlayer.getRate()));
+        new RefreshLotTable(lotStruct.modelLots, currentPlayer);
+        lotStruct.labelRate.setText("Общая цена: " + String.valueOf(currentPlayer.getRate()));
     }
 }

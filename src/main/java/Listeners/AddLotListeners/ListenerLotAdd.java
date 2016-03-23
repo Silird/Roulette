@@ -1,5 +1,7 @@
 package Listeners.AddLotListeners;
 
+import Frames.AddLotFrame.AddLotFrame;
+import Frames.AddLotFrame.LotAddLotFrame;
 import Structures.Player;
 
 import javax.swing.*;
@@ -12,21 +14,20 @@ import java.awt.event.ActionListener;
  */
 public class ListenerLotAdd implements ActionListener {
     private JDialog owner;
-    private JTextField textName, textCost, textCount;
+    private LotAddLotFrame lotStruct;
+    //private JTextField textName, textCost, textCount;
     private Player currentPlayer;
 
-    public ListenerLotAdd(JDialog o, JTextField tN, JTextField tC, JTextField tCou, Player cP) {
+    public ListenerLotAdd(JDialog o, LotAddLotFrame lS, Player cP) {
         owner = o;
-        textName = tN;
-        textCost = tC;
-        textCount = tCou;
+        lotStruct = lS;
         currentPlayer = cP;
     }
 
     public void actionPerformed(ActionEvent e) {
-        String name = textName.getText();
-        int cost = Integer.valueOf(textCost.getText());
-        int count = Integer.valueOf(textCount.getText());
+        String name = lotStruct.textName.getText();
+        int cost = Integer.valueOf(lotStruct.textCost.getText());
+        int count = Integer.valueOf(lotStruct.textCount.getText());
         currentPlayer.addLot(name, cost, count);
         owner.setVisible(false);
     }

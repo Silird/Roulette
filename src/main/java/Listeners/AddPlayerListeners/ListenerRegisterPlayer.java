@@ -1,5 +1,8 @@
 package Listeners.AddPlayerListeners;
 
+import Frames.AddPlayerFrame.ControlAddPlayerFrame;
+import Frames.AddPlayerFrame.LotAddPlayerFrame;
+import Frames.AddPlayerFrame.RegisterAddPlayerFrame;
 import Structures.Exeptions.PlayerAlreadyExist;
 import Structures.Game;
 import Structures.Player;
@@ -13,40 +16,36 @@ import java.awt.event.ActionListener;
  */
 public class ListenerRegisterPlayer implements ActionListener {
     private Player currentPlayer;
-    private JTextField textNickName;
     private JDialog owner;
-    private JLabel labelRegStatus, labelRegisterNick;
-    private JButton butRegister, butAddLot, butRemoveLot, butAccept;
+    private RegisterAddPlayerFrame registerStruct;
+    private LotAddPlayerFrame lotStruct;
     private Game game;
+    private ControlAddPlayerFrame controlStruct;
 
-    public ListenerRegisterPlayer(JDialog o, Player p, JTextField n, JLabel lR, JLabel lRN, JButton bR, JButton bAL,
-                                  JButton bRL, JButton bA, Game g) {
+    public ListenerRegisterPlayer(JDialog o, Player p, RegisterAddPlayerFrame rS, LotAddPlayerFrame lS,
+                                  ControlAddPlayerFrame cS, Game g) {
         owner = o;
         currentPlayer = p;
-        textNickName = n;
-        labelRegStatus = lR;
-        labelRegisterNick = lRN;
-        butRegister = bR;
-        butAddLot = bAL;
-        butRemoveLot = bRL;
-        butAccept = bA;
+        registerStruct = rS;
+        lotStruct = lS;
+        controlStruct = cS;
         game = g;
     }
 
     public void actionPerformed(ActionEvent e) {
-        String nickName = textNickName.getText();
+        String nickName = registerStruct.textNickName.getText();
         if (nickName.equals("никнейм") || nickName.equals("")) {
             JOptionPane.showMessageDialog(owner, "Поле ввода никнейма не заполнено");
         }
         else {
             try {
                 currentPlayer.Register(nickName, game.getAllNickNames());
-                labelRegStatus.setText("Регистрация пройдена");
-                labelRegisterNick.setText("Игрок: " + currentPlayer.getNickName());
-                butRegister.setEnabled(false);
-                butAddLot.setEnabled(true);
-                butRemoveLot.setEnabled(true);
-                butAccept.setEnabled(true);
+                registerStruct.labelRegStatus.setText("Регистрация пройдена");
+                lotStruct.labelRegisterNick.setText("Игрок: " + currentPlayer.getNickName());
+                registerStruct.butRegister.setEnabled(false);
+                lotStruct.lotControlStruct.butAddLot.setEnabled(true);
+                lotStruct.lotControlStruct.butRemoveLot.setEnabled(true);
+                controlStruct.butAccept.setEnabled(true);
             }
             catch (PlayerAlreadyExist ex) {
                 JOptionPane.showMessageDialog(owner, ex.getMessage());

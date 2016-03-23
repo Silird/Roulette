@@ -1,5 +1,6 @@
 package Listeners.AddPlayerListeners;
 
+import Frames.AddPlayerFrame.LotAddPlayerFrame;
 import Frames.MyTable;
 import Listeners.AddPlayerListeners.Functions.RefreshLotTable;
 import Structures.Player;
@@ -14,17 +15,13 @@ import java.awt.event.ActionListener;
  */
 public class ListenerRemoveLot implements ActionListener {
     private JDialog owner;
-    private MyTable tableLots;
-    private DefaultTableModel modelLots;
     private Player currentPlayer;
-    private JLabel labelRate;
+    private LotAddPlayerFrame lotStruct;
 
-    public ListenerRemoveLot(JDialog o, MyTable tL, DefaultTableModel mL, Player cP, JLabel lR) {
+    public ListenerRemoveLot(JDialog o, Player cP, LotAddPlayerFrame lS) {
         owner = o;
-        tableLots = tL;
-        modelLots = mL;
         currentPlayer = cP;
-        labelRate = lR;
+        lotStruct = lS;
     }
 
     private class NotSelectedLotException extends Exception {
@@ -41,15 +38,15 @@ public class ListenerRemoveLot implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         try {
-            if (tableLots.getSelectedRowCount() == 0) {
+            if (lotStruct.tableLots.getSelectedRowCount() == 0) {
                 throw new NotSelectedLotException();
             }
-            if (tableLots.getSelectedRowCount() > 1) {
+            if (lotStruct.tableLots.getSelectedRowCount() > 1) {
                 throw new DoubleSelectedLotException();
             }
-            currentPlayer.RemoveLot(tableLots.getSelectedRow());
-            new RefreshLotTable(modelLots, currentPlayer);
-            labelRate.setText("Общая цена: " + String.valueOf(currentPlayer.getRate()));
+            currentPlayer.RemoveLot(lotStruct.tableLots.getSelectedRow());
+            new RefreshLotTable(lotStruct.modelLots, currentPlayer);
+            lotStruct.labelRate.setText("Общая цена: " + String.valueOf(currentPlayer.getRate()));
         }
         catch (NotSelectedLotException ex) {
             JOptionPane.showMessageDialog(owner, ex.getMessage());
