@@ -1,6 +1,7 @@
-package Frames;
+package Frames.AddPlayerFrame;
 
 
+import Frames.MyTable;
 import Listeners.AddPlayerListeners.*;
 import Structures.Game;
 import Structures.Player;

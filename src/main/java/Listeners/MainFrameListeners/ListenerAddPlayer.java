@@ -1,6 +1,6 @@
 package Listeners.MainFrameListeners;
 
-import Frames.AddPlayerFrame;
+import Frames.AddPlayerFrame.AddPlayerFrame;
 import Listeners.MainFrameListeners.Funcions.RefreshPlayerTable;
 import Structures.Game;
 

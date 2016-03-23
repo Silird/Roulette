@@ -1,6 +1,6 @@
 package Listeners.AddPlayerListeners;
 
-import Frames.AddLotFrame;
+import Frames.AddLotFrame.AddLotFrame;
 import Listeners.AddPlayerListeners.Functions.RefreshLotTable;
 import Structures.Player;
 

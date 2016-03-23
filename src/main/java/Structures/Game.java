@@ -1,9 +1,9 @@
 package Structures;
 
-import Structures.Exeptions.PlayerAlreadyExist;
-
 import java.util.Iterator;
+import java.util.Random;
 import java.util.TreeSet;
+import java.lang.Math;
 
 /**
  * Класс всей игры
@@ -14,6 +14,7 @@ public class Game {
     private TreeSet<Player> players;
     private int bank;
     final int minPlayers = 4;
+    final Random random = new Random();
 
 
     public Game() {
@@ -44,7 +45,6 @@ public class Game {
         if (players.size() == 0) {
             return null;
         }
-        double dRate, dChance, dBank;
         String tmp[][] = new String[players.size()][6];
         Iterator<Player> it = players.iterator();
         Player tmpPlayer;
@@ -53,14 +53,54 @@ public class Game {
             tmpPlayer = it.next();
             tmp[i][0] = tmpPlayer.getNickName();
             tmp[i][1] = String.valueOf(tmpPlayer.getRate());
-            dRate = tmpPlayer.getRate();
-            dBank = bank;
-            dChance = dRate/dBank*100;
-            tmp[i][2] = String.valueOf(dChance) + "%";
+            tmp[i][2] = String.valueOf(getChance(tmpPlayer)) + "%";
             i++;
         }
         return tmp;
     }
+
+    public double getChance(Player tmpPlayer) {
+        double dRate, dChance, dBank;
+        dRate = tmpPlayer.getRate();
+        dBank = bank;
+        dChance = dRate/dBank*100;
+        return RoundResult(dChance, 1);
+    }
+
+    private double RoundResult(double d, int precise) {
+        precise = (int) Math.pow(10, precise);//10^precise;
+        d = d*precise;
+        int i = (int) Math.round(d);
+        return (double) i/precise;
+    }
+
+    public String[][] StartGame() {
+        final int countToWin = 20;
+        String strToWin[][] = new String[3][countToWin];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < countToWin; j++) {
+                strToWin[i][j] = getRandomPlayer();
+            }
+        }
+        return strToWin;
+    }
+
+    private String getRandomPlayer() {
+        double win = RoundResult(random.nextDouble(), 1);
+        Iterator<Player> it = players.iterator();
+        Player tmpPlayer;
+        while (win > 0) {
+            tmpPlayer = it.next();
+            win -= getChance(tmpPlayer);
+            if (win < 0) {
+                return tmpPlayer.getNickName();
+            }
+        }
+        return null;
+    }
+
+    //Рандом - Random ranrom = new Random();
+    //random.nextDouble;
 
     /**
      * Добавление нового игрока

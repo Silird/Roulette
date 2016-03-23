@@ -1,5 +1,6 @@
-package Frames;
+package Frames.MainFrame;
 
+import Frames.MyTable;
 import Listeners.MainFrameListeners.ListenerAddPlayer;
 import Listeners.MainFrameListeners.ListenerExit;
 import Listeners.MainFrameListeners.ListenerRemovePlayer;
@@ -12,6 +13,7 @@ import java.awt.*;
 /**
  * Главная форма
  */
+
 public class MainFrame extends JFrame {
     private JPanel panelControl, panelStatus, panelView, panelPlayers;
     private JButton butExit, butAddPlayer, butRemovePlayer;

@@ -1,4 +1,4 @@
-package Frames;
+package Frames.AddLotFrame;
 
 import Listeners.AddLotListeners.ListenerFocusCountField;
 import Listeners.AddLotListeners.ListenerLotAdd;

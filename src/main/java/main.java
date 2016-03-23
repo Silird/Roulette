@@ -1,4 +1,4 @@
-import Frames.MainFrame;
+import Frames.MainFrame.MainFrame;
 
 /**
  * Точка входа
