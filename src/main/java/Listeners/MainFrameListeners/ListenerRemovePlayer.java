@@ -1,5 +1,7 @@
 package Listeners.MainFrameListeners;
 
+import Frames.MainFrame.PlayersMainFrame;
+import Frames.MainFrame.StatusMainFrame;
 import Frames.MyTable;
 import Listeners.MainFrameListeners.Funcions.RefreshPlayerTable;
 import Structures.Game;
@@ -14,18 +16,15 @@ import java.awt.event.ActionListener;
  */
 public class ListenerRemovePlayer implements ActionListener {
     private JFrame owner;
-    private MyTable tablePlayers;
-    private DefaultTableModel modelPlayers;
+    private PlayersMainFrame playersStruct;
     private Game game;
-    private JLabel labelActivePlayers, labelRemainPlayers;
+    private StatusMainFrame statusStruct;
 
-    public ListenerRemovePlayer(JFrame o, MyTable tP, DefaultTableModel mP, Game g, JLabel lAP, JLabel lRP) {
+    public ListenerRemovePlayer(JFrame o, PlayersMainFrame pS, Game g, StatusMainFrame sS) {
         owner = o;
-        tablePlayers = tP;
-        modelPlayers = mP;
+        playersStruct = pS;
         game = g;
-        labelActivePlayers = lAP;
-        labelRemainPlayers = lRP;
+        statusStruct = sS;
     }
 
     private class NotSelectedPlayerException extends Exception {
@@ -42,15 +41,15 @@ public class ListenerRemovePlayer implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         try {
-            if (tablePlayers.getSelectedRowCount() == 0) {
+            if (playersStruct.tablePlayers.getSelectedRowCount() == 0) {
                 throw new NotSelectedPlayerException();
             }
-            if (tablePlayers.getSelectedRowCount() > 1) {
+            if (playersStruct.tablePlayers.getSelectedRowCount() > 1) {
                 throw new DoubleSelectedPlayerException();
             }
-            game.RemovePlayer(tablePlayers.getSelectedRow());
-            new RefreshPlayerTable(modelPlayers, game);
-            labelActivePlayers.setText("Игроков в игре: " + String.valueOf(game.getCountPlayers()) + "    ");
+            game.RemovePlayer(playersStruct.tablePlayers.getSelectedRow());
+            new RefreshPlayerTable(playersStruct.modelPlayers, game);
+            statusStruct.labelActivePlayers.setText("Игроков в игре: " + String.valueOf(game.getCountPlayers()) + "    ");
             int remainPlayers;
             if ((game.getMinPlayers() - game.getCountPlayers()) < 0) {
                 remainPlayers = 0;
@@ -58,7 +57,7 @@ public class ListenerRemovePlayer implements ActionListener {
             else {
                 remainPlayers = game.getMinPlayers() - game.getCountPlayers();
             }
-            labelRemainPlayers.setText("Игроков для начала: " + String.valueOf(remainPlayers) + "    ");
+            statusStruct.labelRemainPlayers.setText("Игроков для начала: " + String.valueOf(remainPlayers) + "    ");
         }
         catch (NotSelectedPlayerException ex) {
             JOptionPane.showMessageDialog(owner, ex.getMessage());

@@ -1,6 +1,8 @@
 package Listeners.MainFrameListeners;
 
 import Frames.AddPlayerFrame.AddPlayerFrame;
+import Frames.MainFrame.PlayersMainFrame;
+import Frames.MainFrame.StatusMainFrame;
 import Listeners.MainFrameListeners.Funcions.RefreshPlayerTable;
 import Structures.Game;
 
@@ -16,21 +18,20 @@ import java.awt.event.ActionListener;
 public class ListenerAddPlayer implements ActionListener {
     private JFrame owner;
     private Game game;
-    private DefaultTableModel modelPlayers;
-    private JLabel labelActivePlayers, labelRemainPlayers;
+    private PlayersMainFrame playersStruct;
+    private StatusMainFrame statusStruct;
 
-    public ListenerAddPlayer(Game g, JFrame o, DefaultTableModel mP, JLabel lAP, JLabel lRP) {
+    public ListenerAddPlayer(Game g, JFrame o, PlayersMainFrame pS, StatusMainFrame sS) {
         owner = o;
         game = g;
-        modelPlayers = mP;
-        labelActivePlayers = lAP;
-        labelRemainPlayers = lRP;
+        playersStruct = pS;
+        statusStruct = sS;
     }
 
     public void actionPerformed(ActionEvent e) {
         new AddPlayerFrame(game, owner);
-        new RefreshPlayerTable(modelPlayers, game);
-        labelActivePlayers.setText("Игроков в игре: " + String.valueOf(game.getCountPlayers()) + "    ");
+        new RefreshPlayerTable(playersStruct.modelPlayers, game);
+        statusStruct.labelActivePlayers.setText("Игроков в игре: " + String.valueOf(game.getCountPlayers()) + "    ");
         int remainPlayers;
         if ((game.getMinPlayers() - game.getCountPlayers()) < 0) {
             remainPlayers = 0;
@@ -38,6 +39,6 @@ public class ListenerAddPlayer implements ActionListener {
         else {
             remainPlayers = game.getMinPlayers() - game.getCountPlayers();
         }
-        labelRemainPlayers.setText("Игроков для начала: " + String.valueOf(remainPlayers) + "    ");
+        statusStruct.labelRemainPlayers.setText("Игроков для начала: " + String.valueOf(remainPlayers) + "    ");
     }
 }

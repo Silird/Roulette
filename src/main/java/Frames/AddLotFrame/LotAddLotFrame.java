@@ -3,12 +3,12 @@ package Frames.AddLotFrame;
 import javax.swing.*;
 import java.awt.*;
 
-public class LotAddLotFrame {
-    public JPanel panelLot;
+public class LotAddLotFrame extends JPanel {
     public JLabel labelName, labelCost, labelCount;
     public JTextField textName, textCost, textCount;
 
     public LotAddLotFrame() {
+        super();
         labelName = new JLabel("Название:");
         textName = new JTextField();
         textName.setMaximumSize(new Dimension(300, 100));
@@ -19,13 +19,12 @@ public class LotAddLotFrame {
         textCount = new JTextField("1");
         textCount.setForeground(Color.LIGHT_GRAY);
         textCount.setMaximumSize(new Dimension(200, 100));
-        panelLot = new JPanel();
-        panelLot.setLayout(new BoxLayout(panelLot, BoxLayout.Y_AXIS));
-        panelLot.add(labelName);
-        panelLot.add(textName);
-        panelLot.add(labelCost);
-        panelLot.add(textCost);
-        panelLot.add(labelCount);
-        panelLot.add(textCount);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(labelName);
+        this.add(textName);
+        this.add(labelCost);
+        this.add(textCost);
+        this.add(labelCount);
+        this.add(textCount);
     }
 }

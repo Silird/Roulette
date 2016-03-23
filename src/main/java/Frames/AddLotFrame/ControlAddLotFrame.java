@@ -2,15 +2,14 @@ package Frames.AddLotFrame;
 
 import javax.swing.*;
 
-public class ControlAddLotFrame {
-    public JPanel panelControl;
+public class ControlAddLotFrame extends JPanel {
     public JButton butAdd, butCancel;
 
     public ControlAddLotFrame() {
+        super();
         butAdd = new JButton("Добавить");
         butCancel = new JButton("Отмена");
-        panelControl = new JPanel();
-        panelControl.add(butAdd);
-        panelControl.add(butCancel);
+        this.add(butAdd);
+        this.add(butCancel);
     }
 }

@@ -58,7 +58,7 @@ public class AddPlayerFrame extends JDialog {
     private void RegisterInit() {
         registerStruct = new RegisterAddPlayerFrame(currentPlayer);
 
-        this.add(registerStruct.panelRegister, BorderLayout.NORTH);
+        this.add(registerStruct, BorderLayout.NORTH);
     }
 
     /**
@@ -67,7 +67,7 @@ public class AddPlayerFrame extends JDialog {
     private void LotInit() {
         lotStruct = new LotAddPlayerFrame(currentPlayer);
 
-        this.add(lotStruct.panelLot, BorderLayout.CENTER);
+        this.add(lotStruct, BorderLayout.CENTER);
     }
 
     /**
@@ -76,7 +76,7 @@ public class AddPlayerFrame extends JDialog {
     private void ControlInit() {
         controlStruct = new ControlAddPlayerFrame(currentPlayer);
 
-        this.add(controlStruct.panelControl, BorderLayout.SOUTH);
+        this.add(controlStruct, BorderLayout.SOUTH);
     }
 
     /**

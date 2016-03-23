@@ -56,7 +56,7 @@ public class AddLotFrame extends JDialog {
      */
     private void LotInit() {
         lotStruct = new LotAddLotFrame();
-        this.add(lotStruct.panelLot, BorderLayout.NORTH);
+        this.add(lotStruct, BorderLayout.NORTH);
     }
 
     /**
@@ -65,7 +65,7 @@ public class AddLotFrame extends JDialog {
     private void ControlInit() {
         controlStruct = new ControlAddLotFrame();
 
-        this.add(controlStruct.panelControl, BorderLayout.SOUTH);
+        this.add(controlStruct, BorderLayout.SOUTH);
     }
 
     /**

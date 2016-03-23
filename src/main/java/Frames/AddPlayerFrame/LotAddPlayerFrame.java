@@ -6,8 +6,7 @@ import Structures.Player;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class LotAddPlayerFrame {
-    public JPanel panelLot;
+public class LotAddPlayerFrame extends JPanel {
     public JLabel labelRegisterNick, labelRate, labelLots;
     public MyTable tableLots;
     public DefaultTableModel modelLots;
@@ -15,6 +14,7 @@ public class LotAddPlayerFrame {
     public LotControlAddPlayerFrame lotControlStruct;
 
     public LotAddPlayerFrame(Player currentPlayer) {
+        super();
         labelLots = new JLabel("Выставленные предметы:");
         if (currentPlayer.getNickName() != null) {
             labelRegisterNick = new JLabel("Игрок: " + currentPlayer.getNickName());
@@ -30,12 +30,11 @@ public class LotAddPlayerFrame {
 
         lotControlStruct = new LotControlAddPlayerFrame(currentPlayer);
 
-        panelLot = new JPanel();
-        panelLot.setLayout(new BoxLayout(panelLot, BoxLayout.Y_AXIS));
-        panelLot.add(labelLots);
-        panelLot.add(labelRegisterNick);
-        panelLot.add(labelRate);
-        panelLot.add(scrollLots);
-        panelLot.add(lotControlStruct.panelLotControl);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(labelLots);
+        this.add(labelRegisterNick);
+        this.add(labelRate);
+        this.add(scrollLots);
+        this.add(lotControlStruct);
     }
 }
