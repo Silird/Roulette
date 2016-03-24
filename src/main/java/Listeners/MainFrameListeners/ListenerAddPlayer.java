@@ -40,5 +40,6 @@ public class ListenerAddPlayer implements ActionListener {
             remainPlayers = game.getMinPlayers() - game.getCountPlayers();
         }
         statusStruct.labelRemainPlayers.setText("Игроков для начала: " + String.valueOf(remainPlayers) + "    ");
+        statusStruct.labelBank.setText("Общая сумма: " + String.valueOf(game.getBank()) + "    ");
     }
 }

@@ -58,6 +58,7 @@ public class ListenerRemovePlayer implements ActionListener {
                 remainPlayers = game.getMinPlayers() - game.getCountPlayers();
             }
             statusStruct.labelRemainPlayers.setText("Игроков для начала: " + String.valueOf(remainPlayers) + "    ");
+            statusStruct.labelBank.setText("Общая сумма: " + String.valueOf(game.getBank()) + "    ");
         }
         catch (NotSelectedPlayerException ex) {
             JOptionPane.showMessageDialog(owner, ex.getMessage());
