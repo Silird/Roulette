@@ -68,7 +68,7 @@ public class Game {
     }
 
     private double RoundResult(double d, int precise) {
-        precise = (int) Math.pow(10, precise);//10^precise;
+        precise = (int) Math.pow(10, precise);
         d = d*precise;
         int i = (int) Math.round(d);
         return (double) i/precise;
@@ -86,7 +86,7 @@ public class Game {
     }
 
     private String getRandomPlayer() {
-        double win = RoundResult(random.nextDouble(), 1);
+        double win = RoundResult((random.nextDouble()*100), 1);
         Iterator<Player> it = players.iterator();
         Player tmpPlayer;
         while (win > 0) {

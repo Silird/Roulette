@@ -1,6 +1,7 @@
 package Frames.MainFrame;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GameMainFrame extends JPanel {
     public JLabel labelGame;
@@ -11,6 +12,10 @@ public class GameMainFrame extends JPanel {
 
     public GameMainFrame() {
         super();
+
+        this.setMaximumSize(new Dimension(500, 500));
+        this.setMinimumSize(new Dimension(500, 500));
+
         labelGame = new JLabel("Игра ожидает начала");
 
         labelFirstWinner = new JLabel("15%:    ");
