@@ -18,21 +18,21 @@ public class GameMainFrame extends JPanel {
 
         labelGame = new JLabel("Игра ожидает начала");
 
-        labelFirstWinner = new JLabel("15%:    ");
+        labelFirstWinner = new JLabel("10%:    ");
         labelFirstNick = new JLabel("_____");
         panelFirst = new JPanel();
         panelFirst.setLayout(new BoxLayout(panelFirst, BoxLayout.X_AXIS));
         panelFirst.add(labelFirstWinner);
         panelFirst.add(labelFirstNick);
 
-        labelSecondWinner = new JLabel("25%:    ");
+        labelSecondWinner = new JLabel("20%:    ");
         labelSecondNick = new JLabel("_____");
         panelSecond = new JPanel();
         panelSecond.setLayout(new BoxLayout(panelSecond, BoxLayout.X_AXIS));
         panelSecond.add(labelSecondWinner);
         panelSecond.add(labelSecondNick);
 
-        labelThirdWinner = new JLabel("50%:    ");
+        labelThirdWinner = new JLabel("60%:    ");
         labelThirdNick = new JLabel("_____");
         panelThird = new JPanel();
         panelThird.setLayout(new BoxLayout(panelThird, BoxLayout.X_AXIS));
